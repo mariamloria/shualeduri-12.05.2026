@@ -37,16 +37,19 @@ let add = () =>{
   li.appendChild(div);
 
   document.getElementById("list").appendChild(li);
-  // delete value written in input
+
+  // check time
+  checkduedate(li,date);
+
+  // delete value written in input and date
   document.getElementById("task").value = "";
+  document.getElementById("date").value = "";
   
   // გადავცეთ ატრიბუტი onclick done-ს და delete-ს
   spanfordelete.setAttribute("onclick","del(this)");
   spanfordone.setAttribute("onclick","done(this)");
 
-  // time
-
-  checkduedate(li,date);
+  
 }
 function checkduedate(li, duedate){
 
