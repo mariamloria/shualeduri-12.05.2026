@@ -25,6 +25,7 @@ let add = () =>{
   // adding classes
 
   li.classList.add("flex");
+  spanfordate.classList.add("date");
   spanfordone.classList.add("done");
   spanfordelete.classList.add("delete");
 
@@ -47,22 +48,23 @@ let add = () =>{
 
   checkduedate(li,date);
 }
-function checkduedate (li, duedate){
-  let today = new Date();
-  let due = new Date(duedate);
+function checkduedate(li, duedate){
 
-  today.setHours(0,0,0,0);
-  due.setHours(0,0,0,0);
+  let today = new Date();          // current date and time
+  let due = new Date(duedate);     // selected date and time
 
   let timeuntildue = due - today;
 
+  // if due time already passed
   if (timeuntildue <= 0) {
     li.remove();
   } else {
-    // remove when due date arrives
+
+    // remove exactly at due time
     setTimeout(() => {
       li.remove();
     }, timeuntildue);
+
   }
 }
 

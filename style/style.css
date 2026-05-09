@@ -97,3 +97,7 @@ li span:first-child{
   font-style: italic;
   color: rgb(255, 0, 106);
 }
+.date{
+  font-size: 20px;
+  color: rgb(146, 10, 67);
+}
