@@ -1,6 +1,6 @@
-{/* <li class="flex"><span>drink alchohol</span> <span>date</span><div><span class="done">DONE</span><span class="delete">DELETE</span></div></li> */}
+{/* <li class="flex"><span>drink alchohol</span> <span>date</span><div><span class="done">DONE</span><span class="delete">DELETE</span></div></li> */ }
 
-let add = () =>{
+let add = () => {
   // getting value from inputs
   let task = document.getElementById("task").value;
   let date = document.getElementById("date").value;
@@ -39,44 +39,45 @@ let add = () =>{
   document.getElementById("list").appendChild(li);
 
   // check time
-  checkduedate(li,date);
+  checkduedate(li, date, spanfordate);
 
   // delete value written in input and date
   document.getElementById("task").value = "";
   document.getElementById("date").value = "";
-  
+
   // გადავცეთ ატრიბუტი onclick done-ს და delete-ს
-  spanfordelete.setAttribute("onclick","del(this)");
-  spanfordone.setAttribute("onclick","done(this)");
+  spanfordelete.setAttribute("onclick", "del(this)");
+  spanfordone.setAttribute("onclick", "done(this)");
 
-  
+
 }
-function checkduedate(li, duedate){
+function checkduedate(li, duedate, spanfordate) {
 
-  let today = new Date();          // current date and time
-  let due = new Date(duedate);     // selected date and time
+  let today = new Date(); // current date and time
+  let due = new Date(duedate); // selected date and time
 
   let timeuntildue = due - today;
 
-  // if due time already passed
-  if (timeuntildue <= 0) {
-    li.remove();
-  } else {
+  // when due time arrives
+  setTimeout(() => {
+    // make red
+    spanfordate.style.color = "red";
+    li.style.backgroundColor = "red";
 
-    // remove exactly at due time
+    // remove after 3 seconds
     setTimeout(() => {
       li.remove();
-    }, timeuntildue);
+    }, 3000);
 
-  }
+  }, timeuntildue);
+
 }
 
-
-let done = (icondone) =>{
+let done = (icondone) => {
   icondone.parentNode.parentNode.firstElementChild.style.textDecoration = "line-through";
-  icondone.style.visibility ="hidden";
+  icondone.style.visibility = "hidden";
 }
-let del = (icondelete)=>{
-  icondelete.parentNode.parentNode.style.display ="none";
+let del = (icondelete) => {
+  icondelete.parentNode.parentNode.style.display = "none";
 }
 document.getElementById("add").addEventListener("click", add);
